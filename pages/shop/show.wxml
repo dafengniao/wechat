@@ -1,0 +1,84 @@
+<view class="container">
+    <view class="art-header">
+    	<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" class="banners" interval="{{interval}}" duration="{{duration}}" wx:if="{{ list.length > 1 }}">
+		  <block wx:for-items="{{list}}" wx:key="*this">
+		    <swiper-item class="banner">
+		      <image src="{{item}}" class="banner-image" />
+		    </swiper-item>
+		  </block>
+		</swiper>
+		<!-- 一张图不执行swiper -->
+		<image class="art-img" src="{{art.asset}}" wx:elif="{{ list.length < 2 }}"/>
+        <view class="art-title">{{art.title}}</view>
+        <view class="art-price">{{"¥"+art.sale_price}}</view>
+        <view class="flex-wrap">
+	        <view class="mesg"><image src="http://frstatic.qiniudn.com/images/icon/baoyou.png" />七天无理由退货</view>
+	        <view class="mesg"><image src="http://frstatic.qiniudn.com/images/icon/baoyou.png" />48小时快速退款</view>
+	        <view class="mesg"><image src="http://frstatic.qiniudn.com/images/icon/baoyou.png" />全场包邮</view>
+        </view>
+		<view class="btn-area" bindtap="modalTap">
+	    	<text>颜色分类</text><image class="arrow" src="../../image/arrowright.png"/>
+	    </view>
+		<view class="content" hidden="{{modalHidden}}">
+			<view class="f-top" bindtap="modalChange"></view>
+			<view class="fromes">
+				<view class="f-header">
+					<image class="skuimg" src="{{ art.cover_url }}" />
+					<view class="f-price">
+						<text class="price">价格：¥{{sale_price == '' ? art.sale_price : sale_price}}</text>
+						<text class="kucun">剩余库存：{{inventory == '' ? art.inventory: inventory }}</text>
+						<text class="smesg">请选择颜色／分类</text>
+					</view>
+				</view>
+				<view class="art_close" bindtap="modalChange">
+					<image class="close" src="http://frstatic.qiniudn.com/images/icon/close.png"/>
+				</view>
+				<view class="sku-list">
+					<text class="ui header">颜色分类</text>
+					<view class="sku-name">
+						<block wx:for-items="{{skulist}}" wx:if="{{ skulist.length !==0 }}">
+							<view class="magenta-btn {{skuActive== item._id ?'active':''}}" data-id="{{item._id}}" data-price="{{item.price}}" data-quantity="{{item.quantity}}" bindtap="skuClick"> {{item.mode}} </view>
+						</block>
+						<view class="magenta-btn {{skuActive== '' ?'active':''}}" data-id="{{item._id}}"  wx:if="{{ skulist == 0 }}"> 默认 </view>
+					</view>
+				</view>
+				<view class="sku-num">
+					<text class="ui header">数量</text>
+					<view class="numset">
+						<toast hidden="{{toastwarnHidden}}" icon="warn" duration="3000" bindchange="toastwarnChange">
+					        请正确选择数量
+					    </toast>
+						<toast hidden="{{toastHidden}}" icon="warn" duration="3000" bindchange="toastChange">
+					        请选择颜色／分类
+					    </toast>
+					    <toast hidden="{{toastupHidden}}" icon="warn" duration="3000" bindchange="toastupChange">
+					        库存不足
+					    </toast>
+					    <toast hidden="{{toastnumHidden}}" icon="warn" duration="3000" bindchange="toastnumChange">
+					        数量错误
+					    </toast>
+					    <toast hidden="{{toasttrueHidden}}" duration="3000" bindchange="toasttrueChange">
+					        已添加到购物车
+					    </toast>
+					    <view class="numminus {{ inputValue == '1' ? 'active' : '' }}" bindtap="{{ inputValue =='1'? '': 'numMinus' }}" data-add="{{inputValue}}">-</view>
+						<input class="sku-shu" type="number" value="{{ inputValue }}" bindfocus="{{skuActive==''? 'toastTap': ''}}" bindinput="bindKeyInput" />
+						<!-- bindblur="{{ inputValue > inventory ? 'toastUp':'' }}" -->
+					    <view class="numadd {{inputValue == iNventory ? 'active' : ''}}" bindtap="{{ inputValue == inventory ? 'toastUp': 'numAdd' }}" data-add="{{inputValue}}" data-inventory="{{ inventory }}">+</view>
+					</view>
+				</view>
+				<view class="sku-bot">
+					<view class="sku-cart" data-id="{{ skuActive }}" data-num="{{ inputValue }}" data-inventory="{{ inventory }}" bindtap="{{ skuActive == '0'||''? 'toastTT':'toastKu'}}">加入购物车</view>
+					<view class="sku-buy" data-id="{{ skuActive }}" data-num="{{ inputValue }}" data-inventory="{{ inventory }}" bindtap="{{ skuActive == '0'? 'toastTT':'toastBuy'}}">立即购买</view>
+				</view>
+
+			</view>
+		</view>
+		<view class="btn-brand" bindtap="brandId" data-id="{{ brand._id }}">
+			<image class="brandimg" src="{{ brand.cover_url }}" /> 
+			<text> {{ brand.title }}</text>
+			<image class="arrow" src="../../image/arrowright.png"/>
+		</view>
+    </view>
+
+    
+</view>

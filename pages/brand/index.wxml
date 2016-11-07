@@ -1,0 +1,27 @@
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" 
+        class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll" data-id="{{brdata._id}}" data-page="{{ brall.current_page}}" data-totalpage="{{ brall.total_page}}">
+	<view class="brand">
+		<view class="bantop">
+			<image class="banner" src="{{ brdata.banner_url }}" />
+			<view class="bg"></view>
+			<image class="logo" src="{{ brdata.cover_url}}" bindtap="Add" data-page="{{ brall.total_page }}"/>
+		</view>
+	</view>
+	<view class="brandlist">
+		<block wx:for="{{list}}" wx:key="">
+			<view class="item" data-id="{{ item._id }}" bindtap="bindViewTap">
+				<image src="{{ item.cover_url }}"/>
+				<text class="title"> {{ item.short_title }} </text>
+				<text class="price">{{ item.sale_price }}</text>
+			</view>
+		</block>
+	</view>
+</scroll-view>
+<view class="body-view">
+	<loading hidden="{{hidden}}" bindchange="loadingChange">
+	    加载中...
+	</loading>
+	<toast hidden="{{toastnoHidden}}" icon="warn" duration="2000" bindchange="toastnoChange">
+        没有更多了
+    </toast>
+</view>

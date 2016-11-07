@@ -1,0 +1,14 @@
+.banners {
+  width: 750rpx;
+  height: 422rpx;
+}
+.banner{
+  position:absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.banner-image{
+  width: 100%;
+  height: 100%;
+}

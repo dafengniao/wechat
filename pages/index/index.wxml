@@ -1,0 +1,9 @@
+<!--<view class="body-view">
+    <loading hidden="{{hidden}}">
+        加载中...
+    </loading>
+</view>
+<view>{{text}}</view>
+<view>{{array[1].msg}}</view>-->
+<view></view>
+<button bindtap="add">{{count}}</button>

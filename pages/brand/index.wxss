@@ -1,0 +1,66 @@
+.brand{
+	padding-bottom:100rpx;
+	background:#fff;
+}
+.bantop{
+	font-size: 0;
+	position:relative;
+}
+.bantop .banner{
+	width: 750rpx;
+	height: 422rpx;
+}
+.bantop .bg{
+	position:absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.2);
+}
+.bantop .logo{
+	position: absolute;
+	width: 120rpx;
+	height: 120rpx;
+	border-radius: 60rpx;
+	border: 1px solid rgba(0,0,0,0.1);
+	left: 50%;
+	margin-left: -60rpx;
+	bottom:-60rpx;
+}
+.brandlist{
+	font-size: 0;
+	margin:20rpx 20rpx 20rpx 0;
+}
+.brandlist .item{
+	display: inline-block;
+	width: 345rpx;
+	background:#fff;
+	margin: 0 0 20rpx 20rpx;
+	padding-bottom: 20rpx;
+}
+.brandlist .item image{
+	width: 345rpx;
+	height: 345rpx;
+	vertical-align: top;
+}
+.brandlist .item .title{
+	font-size: 28rpx;
+	color: #222;
+	display: block;
+	padding:20rpx 20rpx;
+	overflow: hidden;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.brandlist .item .price{
+	color: #f36;
+	font-size: 24rpx;
+	padding:20rpx;
+}
+
+
+
+
+
