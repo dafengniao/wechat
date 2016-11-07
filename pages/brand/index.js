@@ -63,31 +63,33 @@ Page({
     var page = ++page;
     var totalpage = e.target.dataset.totalpage;
     var that = this;
-    if (!(totalpage >= page)) {
+    if (totalpage >= page) {
+      that.setData({ hidden: false })
+      wx.request({
+        url: 'http://m.taihuoniao.com/app/api/product/getlist?brand_id=' + moreid, //1045548729
+        data:{
+          page: page,
+        },
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        success: function (res) {
+          that.setData({
+            hidden: true,
+            brall: res.data.data,
+            list: that.data.list.concat(res.data.data.rows),
+           })
+          console.log(totalpage);
+          console.log(page);
+        }
+      })
+    }else{
       this.setData({
           toastnoHidden:false
       });
       return;
     }
-    that.setData({ hidden: false })
-    wx.request({
-      url: 'http://m.taihuoniao.com/app/api/product/getlist?brand_id=' + moreid, //1045548729
-      data:{
-        page: page,
-      },
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      success: function (res) {
-        that.setData({
-          hidden: true,
-          brall: res.data.data,
-          list: that.data.list.concat(res.data.data.rows),
-         })
-        console.log(totalpage);
-        console.log(page);
-      }
-    })
+    
 
 
   },

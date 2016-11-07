@@ -31,7 +31,7 @@ Page({
   onLoad: function (options) {
     var that = this
     wx.request({
-      url: 'http://m.taihuoniao.com/app/api/product/view?id=1050430978', //+ options.id, //1045548729
+      url: 'http://m.taihuoniao.com/app/api/product/view?id=' + options.id, //1050430978
       headers: {
         'Content-Type': 'application/json'
       },

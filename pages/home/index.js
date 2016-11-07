@@ -25,7 +25,7 @@ Page({
 	onLoad: function() {
 		var that = this
 		wx.request({
-			url: 'http://m.taihuoniao.com/app/api/gateway/slide',
+			url: 'https://m.taihuoniao.com/app/api/gateway/slide',
 			data: {
 				name: 'app_index_slide'
 			},
